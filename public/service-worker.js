@@ -1,49 +1,69 @@
 const CACHE_NAME = "qr-scanner-v1";
+const BASE_URL = "/simple-qr-scanner/";
+
+const URLS_TO_CACHE = [BASE_URL, BASE_URL + "manifest.json"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => {
-        return cache.add("/");
-      })
-      .catch(() => console.log("Cache install failed")),
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(URLS_TO_CACHE);
+    }),
   );
   self.skipWaiting();
+});
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") {
+    return;
+  }
+
+  event.respondWith(
+    caches
+      .match(event.request)
+      .then((response) => {
+        if (response) {
+          return response;
+        }
+
+        return fetch(event.request).then((response) => {
+          if (
+            !response ||
+            response.status !== 200 ||
+            response.type === "error"
+          ) {
+            return response;
+          }
+
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+
+          return response;
+        });
+      })
+      .catch(() => {
+        return caches.match(BASE_URL).catch(() => {
+          return new Response("Offline - Sin conexión disponible", {
+            status: 503,
+            statusText: "Service Unavailable",
+          });
+        });
+      }),
+  );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames
-          .filter((name) => name !== CACHE_NAME)
-          .map((name) => caches.delete(name)),
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        }),
       );
     }),
   );
   self.clients.claim();
-});
-
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches
-      .match(event.request)
-      .then((response) => {
-        if (response) return response;
-
-        return fetch(event.request).then((response) => {
-          if (response && response.status === 200) {
-            const clonedResponse = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, clonedResponse);
-            });
-          }
-          return response;
-        });
-      })
-      .catch(() => {
-        return caches.match("/index.html");
-      }),
-  );
 });

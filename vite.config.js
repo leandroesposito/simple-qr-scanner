@@ -4,6 +4,7 @@ import fs from "fs";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/simple-qr-scanner/",
   plugins: [react()],
   server:
     process.env.NODE_ENV === "development"
