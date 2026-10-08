@@ -122,3 +122,9 @@ p {
 ul {
   list-style: none;
 }
+
+#html5qr-code-full-region {
+  box-shadow: 0 0 10px white inset;
+  border-radius: 1rem;
+  border: none !important;
+}
