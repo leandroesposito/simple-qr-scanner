@@ -8,11 +8,22 @@
     <meta name="theme-color" content="#000000" />
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/service-worker.js");
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/simple-qr-scanner/service-worker.js", {
+              scope: "/simple-qr-scanner/",
+            })
+            .then((registration) => {
+              console.log("Service Worker registrado:", registration);
+            })
+            .catch((error) => {
+              console.log("Error al registrar Service Worker:", error);
+            });
+        });
       }
     </script>
-    <script type="module" crossorigin src="/assets/index-CBZmnbIg.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BkpfB4yB.css">
+    <script type="module" crossorigin src="/simple-qr-scanner/assets/index-CBZmnbIg.js"></script>
+    <link rel="stylesheet" crossorigin href="/simple-qr-scanner/assets/index-BkpfB4yB.css">
   </head>
   <body>
     <div id="root"></div>
