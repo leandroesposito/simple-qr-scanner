@@ -53,6 +53,13 @@ export default function About() {
           cache. Clearing your browser data will permanently delete your
           history.
         </div>
+        <h3>Source code</h3>
+        <p>
+          You can read the source code{" "}
+          <a href="https://github.com/leandroesposito/simple-qr-scanner">
+            here
+          </a>
+        </p>
       </div>
     </section>
   );
