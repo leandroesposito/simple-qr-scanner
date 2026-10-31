@@ -1,10 +1,10 @@
 export default function About() {
   return (
-    <section class="about-section">
-      <div class="about-container">
+    <section className="about-section">
+      <div className="about-container">
         <h2>About this application</h2>
 
-        <p class="app-title">
+        <p className="app-title">
           <strong>QR Scanner</strong> is a minimalist web application built with{" "}
           <strong>React</strong> that lets you scan and generate QR codes
           quickly and effortlessly.
@@ -48,7 +48,7 @@ export default function About() {
           zero-complexity app that respects your data.
         </p>
 
-        <div class="warning-note">
+        <div className="warning-note">
           <strong>Note:</strong> Your history is stored in your browser's local
           cache. Clearing your browser data will permanently delete your
           history.
