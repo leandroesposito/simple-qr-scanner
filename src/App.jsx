@@ -25,15 +25,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let timeout = null;
-    setTimeout(() => {
-      setNewScanDetected(true);
-      timeout = setTimeout(() => {
-        setNewScanDetected(false);
-      }, 1000);
-    });
+    if (decodedText) {
+      let timeout = null;
+      setTimeout(() => {
+        setNewScanDetected(true);
+        timeout = setTimeout(() => {
+          setNewScanDetected(false);
+        }, 1000);
+      });
 
-    return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }
   }, [decodedText]);
 
   function saveHistory(history) {
