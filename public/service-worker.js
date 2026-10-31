@@ -1,4 +1,4 @@
-const CACHE_NAME = "qr-scanner-v1.01";
+const CACHE_NAME = "qr-scanner-v1.02";
 const BASE_URL = "/simple-qr-scanner/";
 
 const URLS_TO_CACHE = [BASE_URL, BASE_URL + "manifest.json"];
