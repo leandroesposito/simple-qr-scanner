@@ -128,3 +128,17 @@ ul {
   border-radius: 1rem;
   border: none !important;
 }
+
+.last-result {
+  padding: 0.5rem;
+}
+
+.last-result,
+.history-item {
+  word-break: break-all;
+}
+
+.last-result.new-scan {
+  box-shadow: 0 0 10px lime inset;
+  border-radius: 1rem;
+}

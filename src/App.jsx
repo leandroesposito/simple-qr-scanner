@@ -6,6 +6,7 @@ import About from "./About";
 function App() {
   const [decodedText, setDecodedText] = useState("");
   const [history, setHistory] = useState([]);
+  const [newScanDetected, setNewScanDetected] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,6 +23,18 @@ function App() {
       );
     });
   }, []);
+
+  useEffect(() => {
+    let timeout = null;
+    setTimeout(() => {
+      setNewScanDetected(true);
+      timeout = setTimeout(() => {
+        setNewScanDetected(false);
+      }, 1000);
+    });
+
+    return () => clearTimeout(timeout);
+  }, [decodedText]);
 
   function saveHistory(history) {
     localStorage.setItem("history", JSON.stringify(history));
@@ -62,7 +75,9 @@ function App() {
         showZoomSliderIfSupported={true}
         showTorchButtonIfSupported={true}
       />
-      <div className="last-result">{decodedText}</div>
+      <div className={`last-result ${newScanDetected ? "new-scan" : ""}`}>
+        {decodedText}
+      </div>
       <HistoryContainer items={history} onItemDeleteClick={onItemDeleteClick} />
       <About />
     </>
