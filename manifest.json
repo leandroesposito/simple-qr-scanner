@@ -1,5 +1,5 @@
 {
-  "name": "QR Scanner",
+  "name": "Simple QR Scanner",
   "short_name": "QR",
   "start_url": "/simple-qr-scanner/",
   "scope": "/simple-qr-scanner/",
