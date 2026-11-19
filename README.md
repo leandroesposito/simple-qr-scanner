@@ -6,6 +6,12 @@ A minimalist, privacy-focused QR code scanner and generator that runs entirely i
 
 [Try it now](https://leandroesposito.github.io/simple-qr-scanner/)
 
+## Screenshots
+
+| Qr scanning                                                                                         | Bar code scanning                                                                                          | History                                                                                              | History Qr display                                                                                       |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| ![Qr scanning](https://github.com/leandroesposito/simple-qr-scanner/blob/main/screenshots/1_qr.jpg) | ![Bar code scanning](https://github.com/leandroesposito/simple-qr-scanner/blob/main/screenshots/2_bar.jpg) | ![History](https://github.com/leandroesposito/simple-qr-scanner/blob/main/screenshots/3_history.jpg) | ![Qr display](https://github.com/leandroesposito/simple-qr-scanner/blob/main/screenshots/4_recreate.jpg) |
+
 ## Privacy First
 
 **Your data never leaves your device.**
