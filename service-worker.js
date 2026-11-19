@@ -44,7 +44,7 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(() => {
         return caches.match(BASE_URL).catch(() => {
-          return new Response("Offline - Sin conexión disponible", {
+          return new Response("Offline - No conection available", {
             status: 503,
             statusText: "Service Unavailable",
           });
